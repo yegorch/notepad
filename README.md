@@ -23,4 +23,4 @@ ruby read.rb
 
 # Посмотреть заметки
 
-Таблицу SQLite можно открыть через программу DBeaver или DB Browser в файле notepad.sqlite.
+Таблицу SQLite можно открыть через программу DBeaver или DB Browser в файле data/notepad.sqlite.
