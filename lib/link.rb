@@ -1,3 +1,5 @@
+require 'uri'
+
 class Link < Post
   def initialize
     super
@@ -7,7 +9,8 @@ class Link < Post
 
   def read_from_console
     puts 'Адрес ссылки (url):'
-    @url = STDIN.gets.chomp
+    domain_regex = /^((http|https):\/\/)[a-z0-9]*(\.?[a-z0-9]+)\.[a-z]{2,5}(:[0-9]{1,5})?(\/.)?$/ix
+    @url = STDIN.gets.chomp.match(domain_regex)
 
     puts 'Что за ссылка?'
     @text = STDIN.gets.chomp

@@ -19,9 +19,14 @@ end
 
 entry = Post.create(choices[choice])
 
-entry.read_from_console
-
+begin
+  entry.read_from_console
+rescue
+  puts "Информация не валидна"
+retry 
+  entry.read_from_console
+end  
 # Сохраняем пост в базу данных
-rowid = entry.save_to_db
+rowid = entry.save_to_db 
 
 puts "Запись сохранена в базе, id = #{rowid}"

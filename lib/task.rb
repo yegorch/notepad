@@ -1,5 +1,3 @@
-require 'date'
-
 class Task < Post
   def initialize
     super
@@ -11,9 +9,10 @@ class Task < Post
     puts 'Что надо сделать?'
     @text = STDIN.gets.chomp
 
-    puts 'К какому числу? Укажите дату в формате ДД.ММ.ГГГГ, ' \
-      'например 12.05.2003'
-    input = STDIN.gets.chomp
+    puts 'К какому числу? Укажите дату в формате ММ/ДД/ГГГГ, ' \
+      'например 05/12/2003'
+    date = /((02\/[0-2]\d)|((01|[0][3-9]|[1][0-2])\/(31|30|[0-2]\d)))\/[12]\d{3}/
+    input = STDIN.gets.chomp.match(date).to_s
 
     @due_date = Date.parse(input)
   end
