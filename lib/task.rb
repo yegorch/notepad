@@ -15,7 +15,7 @@ class Task < Post
   
     begin
       @due_date = Date.parse(input)
-    rescue Date::Error
+    rescue 
       puts "Не верная дата. Введите дату еще раз"
       input = STDIN.gets.chomp
     retry
