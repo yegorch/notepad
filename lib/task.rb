@@ -6,21 +6,17 @@ class Task < Post
   end
 
   def read_from_console
-    puts 'Что надо сделать?'
-    @text = STDIN.gets.chomp
-
     puts 'К какому числу? Укажите дату в формате ММ/ДД/ГГГГ, ' \
       'например 05/12/2003'
-    input = STDIN.gets.chomp
   
-    begin
-      @due_date = Date.parse(input)
-    rescue 
-      puts "Не верная дата. Введите дату еще раз"
-      input = STDIN.gets.chomp
+    input = STDIN.gets.chomp
+    @due_date = Date.strptime(input, '%d/%m/%Y')
+  
+    puts 'Что надо сделать?'
+    @text = STDIN.gets.chomp
+  rescue ArgumentError => e
+    puts "Не верная дата - #{e.message}. Введите дату еще раз"
     retry
-      input = STDIN.gets.chomp
-    end
   end
 
   def to_strings
